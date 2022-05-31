@@ -4,7 +4,7 @@
     {
         static void Main(string[] args)
         {
-            Warehouse CreateNewStockList()
+            Warehouse GenerateStockList()
             {
                 List<string> foodStuffs = new List<string> { "Apple", "Banana", "Carrot", "Doughnut", "Egg", "Fig", "Garlic", "Ham", "Ice Cream", "Jam", "Ketchup", "Lemon", "Mango", "Nectarine", "Orange", "Pineapple", "Quinoa", "Radish", "Soup", "Tomato", "Udon", "Vegetable Oil", "Watermelon", "Xmas Cookies", "Yoghurt", "Zuchini" };
                 List<Item> items = new List<Item> { };
@@ -34,7 +34,7 @@
                 return stockList;
             }
 
-            Warehouse stockList = CreateNewStockList();
+            Warehouse stockList = GenerateStockList();
 
             stockList.LogCurrentStock();
             stockList.LogItemDetails();
