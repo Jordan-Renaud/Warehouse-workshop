@@ -13,7 +13,7 @@ namespace WarehouseWorkshop
 
         public void LogItemDetails()
         {
-            Console.WriteLine($"Item name: {Name}, Price: £{Price}");
+            Console.WriteLine($"\tItem name: {Name}, Price: £{Price}");
         }
     }
 }
