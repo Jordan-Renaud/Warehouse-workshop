@@ -25,6 +25,10 @@
                     Client client = setUpDataGenerator.NewClient();
                     client.LogOutClientData();
                 }
+                else
+                {
+                    Console.WriteLine("We only handle customers at this point in time. Please try again.");
+                }
             }
 
         }

@@ -1,13 +1,65 @@
+using System.Text.RegularExpressions;
+
 namespace WarehouseWorkshop
 {
     public class Generator
     {
         public Client NewClient()
         {
-            // Console.WriteLine("\nWelcome new customer");
-            // Console.WriteLine("What is your name?");
-            // string userNameResponse = Console.ReadLine();
-            return new Client("gg", 3.5M);
+            string? userNameResponse;
+            string userName = "";
+            bool hasRecievedUserName = false;
+            string? userBalanceResponse;
+            decimal userBalance = 0M;
+            bool hasRecievedUserBalance = false;
+
+            bool CheckForValidName(string response)
+            {
+                string nameRegex = @"^(?=.{1,40}$)[a-zA-Z]+(?:[-'\s][a-zA-Z]+)*$";
+                Regex regex = new Regex(nameRegex);
+                Match MyMatch = Regex.Match(response, nameRegex);
+
+                return response != null && response != "";
+            }
+
+
+            while (!hasRecievedUserName)
+            {
+                Console.WriteLine("\nWelcome new customer");
+                Console.WriteLine("What is your name?");
+                userNameResponse = Console.ReadLine();
+
+                if (CheckForValidName(userNameResponse))
+                {
+                    userName = userNameResponse;
+                    Console.WriteLine($"Lovely to meet you, {userName}.");
+                    hasRecievedUserName = true;
+                }
+                else
+                {
+                    Console.WriteLine($"\nSorry, I didn't get that. Please try again.");
+                }
+            }
+
+            while (!hasRecievedUserBalance)
+            {
+                Console.WriteLine("\nHow much money do you have in your account?");
+                userBalanceResponse = Console.ReadLine();
+
+
+                if (Decimal.TryParse(userBalanceResponse, out userBalance))
+                {
+                    hasRecievedUserBalance = true;
+                }
+                else
+                {
+                    Console.WriteLine($"Sorry, {userBalanceResponse} is not a number.\nPlease try again.");
+                }
+            }
+
+
+
+            return new Client(userName, userBalance);
         }
 
         public Warehouse NewStockList()
